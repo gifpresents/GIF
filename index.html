@@ -59,13 +59,15 @@
       align-items: center;
     }
 
+    /* Brand Logo Animating Display Vector Frame */
     .brand-logo-img {
-      width: 64px;
-      height: 64px;
-      object-fit: contain;
-      margin-bottom: 20px;
+      width: 80px; /* Slightly scaled up to give the animation more screen presence */
+      height: 80px;
+      object-fit: cover;
+      margin-bottom: 24px;
       border-radius: 50%;
       border: 1px solid #2d2d2d;
+      background-color: #000;
     }
 
     h2 {
@@ -133,7 +135,8 @@
 
   <div id="in-app-banner">
     <div class="instruction-card">
-      <img src="https://www.gifpresents.com/favicon.ico" onerror="this.src='https://lh3.googleusercontent.com/d/1_x-zP9m-kF3W';" class="brand-logo-img" alt="GIF Logo">
+      <!-- RELATIVE PATH ROUTING: Automatically fetches your uploaded file locally -->
+      <img src="logo.gif" class="brand-logo-img" alt="GIF Animated Logo">
       <h2>Welcome to GIF</h2>
       <p>We would look best in your Safari</p>
       <a href="x-web-search://www.gifpresents.com" class="action-button">Continue...</a>
@@ -144,14 +147,12 @@
     (function manageBridgeRouting() {
       var targetDestinationUrl = "https://www.gifpresents.com";
       
-      // Check if "?preview=true" is manually typed in the desktop browser address bar
       var isPreviewMode = window.location.search.indexOf("preview=true") > -1;
 
       if (isPreviewMode) {
-        // Force display the UI overlay immediately on desktop for testing
         document.getElementById("loader-view").style.display = "none";
         document.getElementById("in-app-banner").style.display = "flex";
-        return; // Stop right here so it doesn't redirect you
+        return; 
       }
 
       var ua = (navigator.userAgent || navigator.vendor || "").toLowerCase();
