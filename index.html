@@ -10,7 +10,7 @@
   <!-- ============================================= -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Gorana Independent Films">
-  <meta property="og:description" content="">
+  <meta property="og:description" content="Welcome to GIF">
   <meta property="og:url" content="https://home.gifpresents.com">
   <meta property="og:image" content="preview.png">
   <meta property="og:image:width" content="1200">
@@ -98,12 +98,12 @@
       margin: 0 0 32px 0;
     }
 
-    /* 2D Monochrome Custom Icon Grid Layout */
+    /* Fixed Bottom Alignment Grid Container Setup */
     .icon-button-grid {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      width: 85%;
       margin-top: 8px;
     }
 
@@ -111,32 +111,34 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      width: 90px;
-      height: 90px;
+      justify-content: flex-end; /* Locks elements directly to the baseline */
+      height: 96px;
       background: #1c1c1c;
       border: 1px solid #2d2d2d;
       border-radius: 16px;
       cursor: pointer;
       text-decoration: none;
+      box-sizing: border-box;
+      padding: 16px 8px;
       transition: all 0.2s ease;
     }
 
     .monochrome-btn img {
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
       object-fit: contain;
-      filter: grayscale(140%) brightness(90%);
+      filter: grayscale(100%) brightness(70%);
       transition: filter 0.2s ease;
+      margin-bottom: auto; /* Pushes the image container up cleanly */
     }
 
     .monochrome-btn span {
       font-family: "Kyok Medium", sans-serif;
       font-size: 0.7rem;
       color: #666666;
-      margin-top: 10px;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
+      line-height: 1;
     }
 
     .monochrome-btn:active {
@@ -152,7 +154,7 @@
       color: #ffb300;
     }
 
-    /* Modern Minimalist Translucent Overlay Layer */
+    /* Minimal Bold Full-Screen Graphics Frame Overlay Layer */
     .guide-overlay {
       display: none;
       position: fixed;
@@ -160,74 +162,95 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(12, 12, 12, 0.95);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      background-color: #0c0c0c;
       z-index: 999999;
       box-sizing: border-box;
-      padding: 32px;
+      padding: 40px 24px;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
     }
 
-    /* Big Bold Heavy Visual Arrow Graphic pointing to corner anchor */
-    .heavy-menu-arrow {
-      position: absolute;
-      top: 16px;
-      right: 24px;
-      font-size: 4.5rem; /* Massive heavy visual impact */
+    /* Dynamic Multi-Scale Graphic Directional Arrays */
+    .heavy-graphic-wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      padding-right: 12px;
+      margin-top: -10px;
+    }
+
+    .arrow-heavy-primary {
+      font-size: 6.5rem;
       font-weight: 900;
       color: #ffb300;
-      line-height: 1;
-      animation: heavyBounce 0.8s ease-in-out infinite alternate;
+      line-height: 0.8;
+      margin: 0;
+      animation: shiftUp 0.6s ease-in-out infinite alternate;
     }
 
-    @keyframes heavyBounce {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(10px, -10px); }
+    .arrow-heavy-secondary {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: rgba(255, 179, 0, 0.3);
+      line-height: 0.8;
+      margin: -10px 16px 0 0;
+      animation: shiftUp 0.6s ease-in-out infinite alternate 0.15s;
     }
 
-    .overlay-center-graphics {
+    @keyframes shiftUp {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-14px); }
+    }
+
+    .center-artistic-block {
       text-align: center;
-      margin-bottom: 40px;
+      width: 100%;
     }
 
-    /* Minimal bold visual vector graphics representation */
-    .giant-indicator-box {
-      font-size: 5rem;
-      font-weight: bold;
+    .industrial-cross-frame {
+      display: inline-block;
+      border-left: 2px solid #222;
+      border-right: 2px solid #222;
+      padding: 0 40px;
+      margin-bottom: 24px;
+    }
+
+    .glyph-display-cluster {
+      font-size: 6rem;
+      font-weight: 900;
       color: #ffffff;
-      margin-bottom: 20px;
+      letter-spacing: -4px;
       line-height: 1;
+      margin-bottom: 8px;
     }
 
-    .guide-text-block h4 {
+    .action-header-text {
       font-family: "Kyok Medium", sans-serif;
-      font-size: 1.4rem;
-      font-weight: bold;
+      font-size: 1.8rem;
+      font-weight: 900;
       color: #ffffff;
-      margin: 0 0 8px 0;
-      letter-spacing: 0.5px;
+      letter-spacing: 2px;
+      margin: 0 0 6px 0;
       text-transform: uppercase;
     }
 
-    .guide-text-block p {
+    .action-sub-text {
       font-family: "Kyok Light", sans-serif;
       font-size: 0.95rem;
       color: #ffb300;
       font-weight: bold;
+      letter-spacing: 3px;
+      text-transform: uppercase;
       margin: 0;
     }
 
-    /* Clean Overlay Back Control Element */
     .back-btn {
-      position: absolute;
-      bottom: 50px;
       background: transparent;
-      border: 1px solid #444444;
-      color: #888888;
-      padding: 12px 32px;
+      border: 1px solid #333333;
+      color: #555555;
+      padding: 14px 44px;
       font-family: "Kyok Medium", sans-serif;
       font-size: 0.75rem;
       text-transform: uppercase;
@@ -235,12 +258,13 @@
       border-radius: 30px;
       cursor: pointer;
       transition: all 0.2s ease;
+      margin-bottom: 16px;
     }
 
     .back-btn:active {
       border-color: #ffffff;
       color: #ffffff;
-      background: rgba(255,255,255,0.05);
+      background: rgba(255,255,255,0.03);
     }
 
     .spinner {
@@ -271,37 +295,37 @@
       <p>If you wear trousers, give us a browser!</p>
       
       <div class="icon-button-grid">
-        <!-- Manual Chrome link configuration pulling your asset -->
         <a href="googlechromes://www.gifpresents.com" class="monochrome-btn">
-          <img src="chrome-icon.png" alt="Chrome Icon">
+          <img src="chrome-icon.png" alt="Chrome">
           <span>Chrome</span>
         </a>
 
-        <!-- Manual Safari layout trigger action component -->
         <button class="monochrome-btn" onclick="toggleOverlay(true)">
-          <img src="safari-icon.png" alt="Safari Icon">
+          <img src="safari-icon.png" alt="Safari">
           <span>Safari</span>
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Heavy Graphical Translucent Directional Layer -->
+  <!-- Heavy Graphical Minimalist Target Breakout Overlay -->
   <div id="guide-overlay-view" class="guide-overlay">
-    <!-- Big heavy directional action indicator pointing directly at system drawer -->
-    <div class="heavy-menu-arrow">➔</div>
     
-    <div class="overlay-center-graphics">
-      <!-- Minimalist heavy indicator glyph layout -->
-      <div class="giant-indicator-box">···</div>
-      
-      <div class="guide-text-block">
-        <h4>TAP THE MENU ABOVE</h4>
-        <p>CHOOSE OPEN IN BROWSER</p>
+    <!-- Heavy Directional Upward Cascade Elements Frame -->
+    <div class="heavy-graphic-wrapper">
+      <div class="arrow-heavy-primary">↑</div>
+      <div class="arrow-heavy-secondary">↑</div>
+    </div>
+    
+    <!-- Central Modern Creative Geometric Text Block Node -->
+    <div class="center-artistic-block">
+      <div class="industrial-cross-frame">
+        <div class="glyph-display-cluster">···</div>
       </div>
+      <h4 class="action-header-text">TAP THE MENU ABOVE</h4>
+      <p class="action-sub-text">OPEN IN BROWSER</p>
     </div>
 
-    <!-- Interactive Back Button Navigation Handle -->
     <button class="back-btn" onclick="toggleOverlay(false)">Back</button>
   </div>
 
