@@ -4,6 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Gorana Independent Films</title>
+
+  <!-- ============================================= -->
+  <!-- 1. INSTAGRAM DM PREVIEW CONFIGURATION (OG TAGS) -->
+  <!-- ============================================= -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Gorana Independent Films | Cinematic Portfolio">
+  <meta property="og:description" content="Welcome to GIF. Unlock the full-fidelity vertical theater experience.">
+  <meta property="og:url" content="https://home.gifpresents.com">
+  <!-- Replace the image link below with a direct URL to a high-res JPG/PNG poster frame or logo for the chat preview -->
+  <meta property="og:image" content="https://www.gifpresents.com/favicon.ico">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
   <style>
     @font-face {
       font-family: 'Kyok Light';
@@ -36,7 +49,7 @@
       width: 100%;
       height: 100%;
       background-color: #121212;
-      z-index: 999999;
+      z-index: 99999;
       box-sizing: border-box;
       padding: 24px;
       text-align: center;
@@ -57,6 +70,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: relative;
+      z-index: 2;
     }
 
     .brand-logo-img {
@@ -83,12 +98,19 @@
       font-size: 0.95rem;
       line-height: 1.6;
       color: #a0a0a0;
-      margin: 0 0 32px 0;
+      margin: 0 0 28px 0;
     }
 
-    .action-button {
-      display: block;
+    .button-group {
       width: 85%;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .chrome-button {
+      display: block;
+      width: 100%;
       background-color: #ffb300;
       color: #121212;
       border: none;
@@ -101,27 +123,91 @@
       text-align: center;
       text-transform: uppercase;
       letter-spacing: 2px;
-      transition: background-color 0.2s ease, transform 0.2s ease;
+      transition: background-color 0.2s ease;
       box-shadow: 0 4px 15px rgba(255, 179, 0, 0.2);
       box-sizing: border-box;
+      text-decoration: none;
     }
 
-    .action-button:active {
+    .chrome-button:active {
       background-color: #ffa000;
-      transform: scale(0.98);
     }
 
-    .safari-guide {
-      margin-top: 20px;
-      font-size: 0.8rem;
-      color: #666;
-      line-height: 1.4;
-      display: none;
-    }
-
-    .safari-guide span {
-      color: #ffb300;
+    .safari-button {
+      display: block;
+      width: 100%;
+      background-color: transparent;
+      color: #ffffff;
+      border: 1px solid #333333;
+      padding: 13px 24px;
+      font-family: "Kyok Medium", -apple-system, sans-serif;
+      font-size: 0.85rem;
       font-weight: bold;
+      border-radius: 30px;
+      cursor: pointer;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+      text-decoration: none;
+    }
+
+    .safari-button:active {
+      border-color: #ffb300;
+      color: #ffb300;
+    }
+
+    /* ============================================= -->
+    /* BRAND STRENGTH OVERLAY LAYER (THE CINEMATIC ESCAPE) */
+    /* ============================================= --> */
+    .theater-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(18, 18, 18, 0.95);
+      z-index: 999999;
+      color: #ffffff;
+      box-sizing: border-box;
+      padding: 32px;
+      text-align: center;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .theater-msg h3 {
+      font-family: "Kyok Medium", sans-serif;
+      color: #ffb300;
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    .theater-msg p {
+      font-family: "Kyok Light", sans-serif;
+      font-size: 0.9rem;
+      color: #cccccc;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+
+    /* Visual Dynamic Pointer Indication Guide Arrow */
+    .indicator-arrow {
+      position: absolute;
+      top: 24px;
+      right: 32px;
+      font-size: 2rem;
+      color: #ffb300;
+      animation: pointUp 1.2s ease-in-out infinite alternate;
+    }
+
+    @keyframes pointUp {
+      0% { transform: translateY(0) scale(1); opacity: 0.4; }
+      100% { transform: translateY(-12px) scale(1.1); opacity: 1; }
     }
 
     .spinner {
@@ -149,47 +235,34 @@
     <div class="instruction-card">
       <img src="logo.gif" class="brand-logo-img" alt="GIF Animated Logo">
       <h2>Welcome to GIF</h2>
-      <p id="main-text">We would look best in your Safari</p>
+      <p>We would look best in your native browser</p>
       
-      <button class="action-button" onclick="triggerBreakout()">Continue...</button>
-      
-      <div class="safari-guide" id="safari-instructions">
-        No Chrome? Tap the <span>three dots (···)</span> in the top right corner and choose <span>"Open in Safari"</span>.
+      <div class="button-group">
+        <a href="googlechromes://www.gifpresents.com" class="chrome-button">Quick Launch (Chrome)</a>
+        <button class="safari-button" onclick="activateTheaterMode()">Cinematic Mode (Safari)</button>
       </div>
     </div>
   </div>
 
+  <!-- High-End Luxury Overlay Interface Frame -->
+  <div id="theater-view" class="theater-overlay">
+    <!-- Visual cue guiding them cleanly right to Instagram's framework anchor -->
+    <div class="indicator-arrow">↗</div>
+    
+    <div class="theater-msg">
+      <h3>Activating Theatre Mode</h3>
+      <p>To experience our vertical series in uncompressed, high-fidelity resolution, tap the options menu above and choose <b>Open in Safari</b>.</p>
+    </div>
+  </div>
+
   <script>
-    var targetDomain = "www.gifpresents.com";
-
-    function triggerBreakout() {
-      var pageHidden = false;
-      window.addEventListener("pagehide", function() { pageHidden = true; });
-      window.addEventListener("visibilitychange", function() {
-        if (document.visibilityState === 'hidden') pageHidden = true;
-      });
-
-      // 1. First, try Chrome. If they have Chrome, this fires cleanly (as proven in your Video F)
-      window.location.href = "googlechromes://" + targetDomain;
-
-      // 2. Try the x-safari-https trick using window.open in a new blank frame after 100ms
-      setTimeout(function() {
-        if (!pageHidden) {
-          window.open("x-safari-https://" + targetDomain, "_blank");
-        }
-      }, 100);
-
-      // 3. Fallback instructions: If the user is still here after 0.8 seconds, show the safe UI guide
-      setTimeout(function() {
-        if (!pageHidden) {
-          document.getElementById("safari-instructions").style.display = "block";
-          document.getElementById("main-text").innerText = "Please use Safari to continue";
-        }
-      }, 800);
+    function activateTheaterMode() {
+      // Toggle the cinematic black overlay frame seamlessly
+      document.getElementById("theater-view").style.display = "flex";
     }
 
     (function manageBridgeRouting() {
-      var targetDestinationUrl = "https://" + targetDomain;
+      var targetDestinationUrl = "https://www.gifpresents.com";
       var isPreviewMode = window.location.search.indexOf("preview=true") > -1;
 
       if (isPreviewMode) {
