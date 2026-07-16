@@ -86,7 +86,6 @@
       margin: 0 0 32px 0;
     }
 
-    /* JavaScript-triggered Button Style */
     .action-button {
       display: block;
       width: 85%;
@@ -144,27 +143,21 @@
   </div>
 
   <script>
-    // Master JavaScript Cascading Breakout Engine (Updated)
     function triggerBreakout() {
-      var targetUrl = "https://www.gifpresents.com";
+      var targetDomain = "www.gifpresents.com";
 
-      // 1. Force the Safari search scheme with full https:// protocol to trigger auto-navigation
-      window.location.href = "x-web-search://?" + targetUrl;
+      // 1. Try Apple's native Safari-exclusive protocol first (from Stack Overflow iOS standard)
+      window.location.href = "x-safari-https://" + targetDomain;
 
-      // 2. Try exclusive Safari direct scheme after 100ms
+      // 2. Try the mobile tab alternative after 100ms
       setTimeout(function() {
-        window.location.href = "x-safari-" + targetUrl;
+        window.location.href = "com-apple-mobilesafari-tab:https://" + targetDomain;
       }, 100);
 
-      // 3. Try Apple's tab scheme after 300ms
+      // 3. Fallback to Google Chrome's iOS scheme after 300ms (Confirmed working flawlessly!)
       setTimeout(function() {
-        window.location.href = "com-apple-mobilesafari-tab:" + targetUrl;
+        window.location.href = "googlechromes://" + targetDomain;
       }, 300);
-
-      // 4. Try Google Chrome's iOS scheme after 500ms
-      setTimeout(function() {
-        window.location.href = "googlechromes://www.gifpresents.com";
-      }, 500);
     }
 
     (function manageBridgeRouting() {
