@@ -37,7 +37,7 @@
       overflow: hidden;
     }
 
-    /* Enhanced Evident Native CSS Blurred Ambient Backdrop */
+    /* Evident Dynamic Moving Ambient Backdrop */
     .ambient-bg {
       position: absolute;
       top: 0;
@@ -47,10 +47,24 @@
       background: radial-gradient(circle at 15% 25%, #2a2a2a 0%, transparent 45%),
                   radial-gradient(circle at 85% 75%, #4a3605 0%, transparent 55%),
                   radial-gradient(circle at 50% 50%, #161616 0%, #080808 100%);
+      background-size: 200% 200%;
       filter: blur(40px);
       -webkit-filter: blur(40px);
       z-index: 1;
       pointer-events: none;
+      animation: moveGradient 12s ease infinite alternate;
+    }
+
+    @keyframes moveGradient {
+      0% {
+        background-position: 0% 0%;
+      }
+      50% {
+        background-position: 100% 100%;
+      }
+      100% {
+        background-position: 0% 100%;
+      }
     }
 
     #in-app-banner {
@@ -86,7 +100,6 @@
       z-index: 20;
     }
 
-    /* Enlarged Animated .gif Logo Container */
     .brand-logo-img {
       width: 100px;
       height: 100px;
@@ -106,7 +119,6 @@
       letter-spacing: 0.5px;
     }
 
-    /* Stylized Italized Quote Block */
     .tagline-quote {
       font-family: "Kyok Light", -apple-system, sans-serif;
       font-size: 0.95rem;
@@ -140,7 +152,6 @@
       transition: all 0.2s ease;
     }
 
-    /* Restored Native Full Color Asset Profiles */
     .monochrome-btn img {
       width: 34px;
       height: 34px;
@@ -166,7 +177,6 @@
       color: #ffb300;
     }
 
-    /* Corrected Position Framework Preventing Overlay Crashes */
     .safari-prompt-element {
       display: none;
       position: absolute;
@@ -181,7 +191,7 @@
     .chevron-cluster-graphic {
       display: flex;
       transform: rotate(-45deg);
-      margin-bottom: 12px; /* Increased padding to separate from container below */
+      margin-bottom: 12px;
       padding-right: 16px;
     }
 
