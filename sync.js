@@ -2,9 +2,9 @@ const fs = require('fs');
 const axios = require('axios');
 
 // =========================================================================
-// CONFIGURATION ENGINE
+// CONFIGURATION ENGINE (SECURED VIA GITHUB SECRETS)
 // =========================================================================
-const API_KEY = 'YOUR_YOUTUBE_DATA_API_V3_KEY'; // Replace with your real API credential key
+const API_KEY = process.env.YOUTUBE_KEY; 
 const CHANNEL_ID = 'UCqRFJN6QZ4t4qf3k7qxEFXA';
 
 // Replicating your "Playlist Order" sheet mapping rules
