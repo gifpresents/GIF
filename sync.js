@@ -8,13 +8,26 @@ const API_KEY = process.env.YOUTUBE_KEY;
 const CHANNEL_ID = 'UCqRFJN6QZ4t4qf3k7qxEFXA';
 
 // Replicating your "Playlist Order" sheet mapping rules
+// Fallback order mapping rules for explicit layout priorities
 const CUSTOM_ORDER_MAP = {
-  "vertical series": 1,
-  "short films": 2,
-  "commercials": 3
-  // Add additional lowercased categories and rankings here manually as needed
+  "trailers": 1,
+  "advertisements": 2,
+  "hospitality videos": 3,
+  "corporate films": 4,
+  "documentaries": 5,
+  "government campaigns": 6,
+  "awareness videos": 7,
+  "vertical series": 8,
+  "music videos": 9,
+  "comic sketches": 10,
+  "bts": 11,
+  "reels": 12,
+  "tutorials & testimonials": 13,
+  "pitch videos": 14,
+  "theatre plays": 15,
+  "voiceovers": 16,
+  "motion graphics": 17
 };
-
 async function fetchAllYouTubeData() {
   let videoData = {};
   let baseCategories = [];
