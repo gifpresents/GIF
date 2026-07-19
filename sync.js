@@ -61,6 +61,7 @@ async function fetchAllYouTubeData() {
       // This forces the API to look at the OAuth token's account library, revealing unlisted playlists!
       const playlistUrl = `https://www.googleapis.com/youtube/v3/playlists?part=snippet,status&mine=true&maxResults=50&pageToken=${playlistPageToken}`;
       const playlistRes = await axios.get(playlistUrl, authHeader);
+      console.log("RAW PLAYLIST RESPONSE FROM GOOGLE:", JSON.stringify(playlistRes.data));
       
       if (!playlistRes.data.items || playlistRes.data.items.length === 0) break;
 
