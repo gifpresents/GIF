@@ -580,16 +580,15 @@
   </div>
 
   <div id="fullscreen-container">
-  <button class="fullscreen-close-btn" onclick="exitManualFullscreen()">✕</button>
-  <!-- ADDED webkit-playsinline, playsinline, and explicit permission parameters below -->
-  <iframe id="fullscreen-player" 
-          src="" 
-          allow="autoplay; encrypted-media; fullscreen; picture-in-picture" 
-          playsinline="1" 
-          webkit-playsinline="1" 
-          allowfullscreen>
-  </iframe>
-</div>
+    <button class="fullscreen-close-btn" onclick="exitManualFullscreen()">✕</button>
+    <iframe id="fullscreen-player" 
+            src="" 
+            allow="autoplay; encrypted-media; fullscreen; picture-in-picture" 
+            playsinline="1" 
+            webkit-playsinline="1" 
+            allowfullscreen>
+    </iframe>
+  </div>
 
   <script>
     if ('scrollRestoration' in history) {
@@ -972,29 +971,48 @@
     }
 
     function playInFullscreen(url) {
-  if (!url) return;
-  
-  var container = document.getElementById('fullscreen-container');
-  var player = document.getElementById('fullscreen-player');
-  
-  // 1. Force state reset first to prevent canvas layering freezes
-  player.src = ""; 
-  
-  // 2. Launch full screen mode to prepare the viewport canvas
-  if (container.requestFullscreen) {
-    container.requestFullscreen();
-  } else if (container.webkitRequestFullscreen) {
-    container.webkitRequestFullscreen();
-  } else if (container.msRequestFullscreen) {
-    container.msRequestFullscreen();
-  }
-  
-  // 3. Populate the source AFTER viewport allocation to kick off the video renderer cleanly
-  var fullScreenPlayUrl = url + (url.indexOf('?') > -1 ? '&' : '?') + 'autoplay=1&fs=1';
-  setTimeout(function() {
-    player.src = fullScreenPlayUrl;
-  }, 150); // Short 150ms buffer bypasses iOS Chrome execution blocks!
-}
+      if (!url) return;
+      
+      var container = document.getElementById('fullscreen-container');
+      var player = document.getElementById('fullscreen-player');
+      
+      // 1. Force state reset first to prevent canvas layering freezes
+      player.src = ""; 
+      
+      // 2. Detect if the user is on an iOS/Apple WebKit device
+      var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+                  
+      if (isIOS) {
+        // Build the direct playback source url
+        var fullScreenPlayUrl = url + (url.indexOf('?') > -1 ? '&' : '?') + 'autoplay=1&fs=1';
+        player.src = fullScreenPlayUrl;
+
+        // On iOS, trigger full-screen directly on the IFRAME element itself 
+        // to force WebKit to hand over hardware graphic rendering priority
+        if (player.requestFullscreen) {
+          player.requestFullscreen();
+        } else if (player.webkitRequestFullscreen) {
+          player.webkitRequestFullscreen();
+        } else if (player.webkitEnterFullscreen) {
+          player.webkitEnterFullscreen(); // Legacy fallback for WKWebViews
+        }
+      } else {
+        // Keep your flawless existing layout loop completely untouched for Windows & Android
+        if (container.requestFullscreen) {
+          container.requestFullscreen();
+        } else if (container.webkitRequestFullscreen) {
+          container.webkitRequestFullscreen();
+        } else if (container.msRequestFullscreen) {
+          container.msRequestFullscreen();
+        }
+        
+        var fullScreenPlayUrl = url + (url.indexOf('?') > -1 ? '&' : '?') + 'autoplay=1&fs=1';
+        setTimeout(function() {
+          player.src = fullScreenPlayUrl;
+        }, 150);
+      }
+    }
 
     function exitManualFullscreen() {
       if (document.exitFullscreen) {
